@@ -35,127 +35,70 @@
       outline: none;
     }
     input[type="text"]:focus { border-color: #ff4444; }
-
-    .type-row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
+    .type-row { display: flex; gap: 10px; margin-bottom: 18px; }
     .type-btn {
-      flex: 1;
-      padding: 10px;
-      border-radius: 8px;
-      border: 2px solid #333;
-      background: #111;
-      color: #aaa;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: all 0.2s;
+      flex: 1; padding: 10px;
+      border-radius: 8px; border: 2px solid #333;
+      background: #111; color: #aaa;
+      font-size: 0.9rem; cursor: pointer; transition: all 0.2s;
     }
     .type-btn.active {
-      border-color: #ff4444;
-      background: #2a0000;
-      color: #ff4444;
-      font-weight: bold;
+      border-color: #ff4444; background: #2a0000;
+      color: #ff4444; font-weight: bold;
     }
-
     #fetchBtn {
-      width: 100%;
-      padding: 14px;
-      background: #ff4444;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.2s;
+      width: 100%; padding: 14px;
+      background: #ff4444; color: #fff;
+      border: none; border-radius: 8px;
+      font-size: 1rem; font-weight: bold;
+      cursor: pointer; transition: background 0.2s;
     }
     #fetchBtn:disabled { background: #555; cursor: not-allowed; }
     #fetchBtn:not(:disabled):hover { background: #cc2222; }
-
     #status {
-      margin-top: 18px;
-      font-size: 0.85rem;
-      text-align: center;
-      min-height: 20px;
-      color: #aaa;
+      margin-top: 18px; font-size: 0.85rem;
+      text-align: center; min-height: 20px; color: #aaa;
     }
     #status.error { color: #ff6666; }
     #status.ok { color: #66ff66; }
-
     #result {
-      margin-top: 20px;
-      display: none;
-      background: #111;
-      border-radius: 10px;
-      padding: 16px;
-      border: 1px solid #333;
+      margin-top: 20px; display: none;
+      background: #111; border-radius: 10px;
+      padding: 16px; border: 1px solid #333;
     }
     #result .thumb {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 12px;
-      display: none;
+      width: 100%; border-radius: 8px;
+      margin-bottom: 12px; display: none;
     }
-    #result .title {
-      font-size: 0.95rem;
-      font-weight: bold;
-      margin-bottom: 6px;
-      color: #eee;
-    }
-    #result .meta {
-      font-size: 0.78rem;
-      color: #888;
-      margin-bottom: 14px;
-    }
-
+    #result .title { font-size: 0.95rem; font-weight: bold; margin-bottom: 6px; color: #eee; }
+    #result .meta { font-size: 0.78rem; color: #888; margin-bottom: 14px; }
     .format-list { display: flex; flex-direction: column; gap: 10px; }
     .format-item {
-      display: flex;
-      align-items: center;
+      display: flex; align-items: center;
       justify-content: space-between;
-      background: #1a1a1a;
-      border-radius: 8px;
-      padding: 10px 12px;
-      border: 1px solid #2a2a2a;
+      background: #1a1a1a; border-radius: 8px;
+      padding: 10px 12px; border: 1px solid #2a2a2a;
     }
     .format-info { font-size: 0.82rem; color: #bbb; }
     .format-info strong { color: #fff; display: block; font-size: 0.88rem; }
     .dl-btn {
-      padding: 8px 14px;
-      background: #ff4444;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: bold;
-      cursor: pointer;
-      text-decoration: none;
-      white-space: nowrap;
+      padding: 8px 14px; background: #ff4444;
+      color: #fff; border: none; border-radius: 6px;
+      font-size: 0.8rem; font-weight: bold;
+      cursor: pointer; text-decoration: none; white-space: nowrap;
     }
     .dl-btn:hover { background: #cc2222; }
     .dl-btn.audio { background: #228b22; }
     .dl-btn.audio:hover { background: #196219; }
-
     .spinner {
-      display: inline-block;
-      width: 18px; height: 18px;
-      border: 3px solid #555;
-      border-top-color: #ff4444;
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-      vertical-align: middle;
-      margin-right: 6px;
+      display: inline-block; width: 18px; height: 18px;
+      border: 3px solid #555; border-top-color: #ff4444;
+      border-radius: 50%; animation: spin 0.7s linear infinite;
+      vertical-align: middle; margin-right: 6px;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
-
-    .note {
-      font-size: 0.72rem;
-      color: #555;
-      text-align: center;
-      margin-top: 16px;
-    }
+    .note { font-size: 0.72rem; color: #555; text-align: center; margin-top: 16px; }
+    #proxyInfo { font-size: 0.72rem; color: #555; text-align: center; margin-top: 8px; }
   </style>
 </head>
 <body>
@@ -176,6 +119,7 @@
   <button id="fetchBtn" onclick="fetchInfo()">🔍 Cari Info & Format</button>
 
   <div id="status"></div>
+  <div id="proxyInfo"></div>
 
   <div id="result">
     <img id="thumb" class="thumb" alt="thumbnail" />
@@ -184,12 +128,21 @@
     <div class="format-list" id="formatList"></div>
   </div>
 
-  <p class="note">⚠️ Gunakan untuk konten yang kamu miliki haknya. Download berjalan di browser, tap tombol Download lalu simpan file.</p>
+  <p class="note">⚠️ Gunakan untuk konten yang kamu miliki haknya. Tap tombol Download lalu simpan file.</p>
 </div>
 
 <script>
   const AUTH = '20250901majwlqo';
+  const TARGET_URL = 'https://api.vidssave.com/api/contentsite_api/media/parse';
   let currentType = 'mp4';
+
+  // Daftar CORS proxy — dicoba satu per satu kalau gagal
+  const PROXIES = [
+    url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+    url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+    url => `https://cors-anywhere.herokuapp.com/${url}`,
+    url => `https://thingproxy.freeboard.io/fetch/${url}`,
+  ];
 
   function setType(t) {
     currentType = t;
@@ -197,6 +150,7 @@
     document.getElementById('btnMP3').classList.toggle('active', t === 'mp3');
     document.getElementById('result').style.display = 'none';
     document.getElementById('status').textContent = '';
+    document.getElementById('proxyInfo').textContent = '';
   }
 
   function setStatus(msg, cls = '') {
@@ -208,13 +162,25 @@
   function setLoading(on) {
     const btn = document.getElementById('fetchBtn');
     btn.disabled = on;
-    btn.textContent = on ? '' : '🔍 Cari Info & Format';
-    if (on) {
-      const sp = document.createElement('span');
-      sp.className = 'spinner';
-      btn.prepend(sp);
-      btn.append(' Memproses...');
+    btn.innerHTML = on
+      ? '<span class="spinner"></span> Memproses...'
+      : '🔍 Cari Info & Format';
+  }
+
+  async function tryFetch(proxyFn, body) {
+    const proxyUrl = proxyFn(TARGET_URL);
+    const res = await fetch(proxyUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body.toString(),
+      signal: AbortSignal.timeout(10000) // 10 detik timeout per proxy
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    if (json.status !== 1 || !json.data) {
+      throw new Error(json.message || 'API error');
     }
+    return json.data;
   }
 
   async function fetchInfo() {
@@ -223,6 +189,7 @@
 
     setLoading(true);
     setStatus('Menghubungi server...');
+    document.getElementById('proxyInfo').textContent = '';
     document.getElementById('result').style.display = 'none';
 
     const body = new URLSearchParams({
@@ -232,38 +199,33 @@
       link: url
     });
 
-    try {
-      // Pakai proxy CORS agar bisa dipanggil dari browser
-      const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent('https://api.vidssave.com/api/contentsite_api/media/parse');
-
-      const res = await fetch(proxyUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body.toString()
-      });
-
-      const json = await res.json();
-
-      if (json.status !== 1 || !json.data) {
-        throw new Error(json.message || 'Gagal mendapatkan info video.');
+    let lastError = null;
+    for (let i = 0; i < PROXIES.length; i++) {
+      try {
+        setStatus(`⏳ Mencoba koneksi ${i + 1}/${PROXIES.length}...`);
+        const data = await tryFetch(PROXIES[i], body);
+        document.getElementById('proxyInfo').textContent = `✅ Berhasil via proxy #${i + 1}`;
+        renderResult(data);
+        setStatus('');
+        setLoading(false);
+        return;
+      } catch (e) {
+        lastError = e;
+        console.warn(`Proxy ${i + 1} gagal:`, e.message);
       }
-
-      renderResult(json.data);
-      setStatus('');
-    } catch (e) {
-      setStatus('❌ Error: ' + e.message, 'error');
-    } finally {
-      setLoading(false);
     }
+
+    setStatus('❌ Semua proxy gagal. Coba lagi atau cek koneksi internet kamu.\n(' + lastError?.message + ')', 'error');
+    setLoading(false);
   }
 
   function renderResult(data) {
     document.getElementById('vidTitle').textContent = data.title || 'Tanpa Judul';
-    
-    const dur = data.duration ? `Durasi: ${Math.floor(data.duration/60)}:${String(data.duration%60).padStart(2,'0')} • ` : '';
+    const dur = data.duration
+      ? `Durasi: ${Math.floor(data.duration / 60)}:${String(data.duration % 60).padStart(2, '0')} • `
+      : '';
     document.getElementById('vidMeta').textContent = dur + (data.author || '');
 
-    // Thumbnail
     const thumb = document.getElementById('thumb');
     if (data.thumbnail) {
       thumb.src = data.thumbnail;
@@ -273,7 +235,6 @@
       thumb.style.display = 'none';
     }
 
-    // Filter resources
     const resources = data.resources || [];
     let filtered = [];
 
@@ -285,7 +246,6 @@
       if (!filtered.length) filtered = resources.filter(r => r.type === 'video');
     }
 
-    // Kalau tidak ada filter, tampilkan semua
     if (!filtered.length) filtered = resources;
 
     const list = document.getElementById('formatList');
@@ -317,7 +277,6 @@
     document.getElementById('result').style.display = 'block';
   }
 
-  // Enter key support
   document.getElementById('urlInput').addEventListener('keydown', e => {
     if (e.key === 'Enter') fetchInfo();
   });

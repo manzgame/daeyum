@@ -1,0 +1,16 @@
+{
+  "buildCommand": "true",
+  "outputDirectory": ".",
+  "framework": "static",
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/proxy",
+      "destination": "/api/proxy.js"
+    }
+  ]
+}
